@@ -4,6 +4,9 @@ import com.example.eurder.domain.User;
 import com.example.eurder.service.dto.CreateUserDto;
 import com.example.eurder.service.dto.UserDto;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 public abstract class UserMapper {
 
     public static User toUser(CreateUserDto createUserDto){
@@ -27,5 +30,9 @@ public abstract class UserMapper {
                 user.getPhoneNumber(),
                 user.getPassword(),
                 user.getRole());
+    }
+
+    public static Collection<UserDto> toDto(Collection<User> users){
+        return users.stream().map(UserMapper::toDto).collect(Collectors.toList());
     }
 }

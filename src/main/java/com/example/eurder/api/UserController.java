@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping(path = "/users")
 public class UserController {
@@ -25,5 +27,20 @@ public class UserController {
     public UserDto createUser(@RequestBody CreateUserDto createUserDto){
         userLogger.info("User is created");
         return userService.createUser(createUserDto);
+    }
+
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public Collection<UserDto> getAllUsers(){
+        userLogger.info("Returned all users");
+        return userService.getAllUsers();
+    }
+
+    @GetMapping(path = "/{userId}" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public UserDto getUser(@PathVariable long userId){
+        userLogger.info("Returned user");
+        return userService.getUser(userId);
     }
 }

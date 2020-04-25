@@ -53,4 +53,8 @@ public class UserDto {
     public Role getRole() {
         return role;
     }
+
+    public String getPassword() {
+        return password;
+    }
 }
