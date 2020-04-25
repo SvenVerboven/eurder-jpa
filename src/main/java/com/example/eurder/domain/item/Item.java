@@ -1,6 +1,7 @@
 package com.example.eurder.domain.item;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "item")
@@ -66,5 +67,12 @@ public class Item {
 
     public void setStockAmount(int stockAmount) {
         this.stockAmount = stockAmount;
+    }
+
+    public LocalDate getShippingDay(int orderedAmountOfItems) {
+        if (stockAmount >= orderedAmountOfItems) {
+            return LocalDate.now().plusDays(1);
+        }
+        return LocalDate.now().plusDays(7);
     }
 }
