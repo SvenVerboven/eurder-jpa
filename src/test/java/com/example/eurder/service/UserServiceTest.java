@@ -87,7 +87,7 @@ public class UserServiceTest {
         // Then
         assertThatThrownBy(()-> userService.getUser(userId))
                 .isInstanceOf(UserDoesNotExistException.class)
-                .hasMessage("User with id: 100 does not exist");
+                .hasMessage("User with id: " + userId + " does not exist");
     }
 
     @AfterEach
