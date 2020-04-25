@@ -1,17 +1,17 @@
 package com.example.eurder.api;
 
-import com.example.eurder.domain.*;
+import com.example.eurder.domain.user.*;
 import com.example.eurder.service.dto.CreateUserDto;
 import com.example.eurder.service.dto.UserDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UserControllerTest {
@@ -34,7 +34,7 @@ class UserControllerTest {
         // Then
         webTestClient.post()
                 .uri(USERS_PATH)
-                .contentType(APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
                 .body(Mono.just(createUserDto), CreateUserDto.class)
                 .exchange()
                 .expectStatus()

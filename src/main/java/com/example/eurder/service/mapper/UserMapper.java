@@ -1,6 +1,6 @@
 package com.example.eurder.service.mapper;
 
-import com.example.eurder.domain.User;
+import com.example.eurder.domain.user.User;
 import com.example.eurder.service.dto.CreateUserDto;
 import com.example.eurder.service.dto.UserDto;
 

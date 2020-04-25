@@ -1,7 +1,7 @@
 package com.example.eurder.service;
 
-import com.example.eurder.domain.*;
 import com.example.eurder.domain.exceptions.UserDoesNotExistException;
+import com.example.eurder.domain.user.*;
 import com.example.eurder.service.dto.CreateUserDto;
 import com.example.eurder.service.dto.UserDto;
 import org.junit.jupiter.api.AfterEach;

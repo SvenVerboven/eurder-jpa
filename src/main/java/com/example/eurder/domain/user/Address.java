@@ -1,4 +1,4 @@
-package com.example.eurder.domain;
+package com.example.eurder.domain.user;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

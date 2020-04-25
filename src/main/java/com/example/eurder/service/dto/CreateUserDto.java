@@ -1,7 +1,7 @@
 package com.example.eurder.service.dto;
 
-import com.example.eurder.domain.Address;
-import com.example.eurder.domain.PhoneNumber;
+import com.example.eurder.domain.user.Address;
+import com.example.eurder.domain.user.PhoneNumber;
 
 public class CreateUserDto {
 
