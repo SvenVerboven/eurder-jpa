@@ -1,5 +1,8 @@
 package com.example.eurder.domain.user;
 
+import com.example.eurder.domain.Views;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.util.Objects;
 

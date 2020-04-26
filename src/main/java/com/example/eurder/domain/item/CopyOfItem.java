@@ -1,5 +1,8 @@
 package com.example.eurder.domain.item;
 
+import com.example.eurder.domain.Views;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -7,12 +10,15 @@ import javax.persistence.Embeddable;
 public class CopyOfItem {
 
     @Column(name = "itemName")
+    @JsonView(Views.Public.class)
     private String itemName;
 
     @Column(name = "itemDescription")
+    @JsonView(Views.Detailed.class)
     private String itemDescription;
 
     @Column(name = "itemPrice")
+    @JsonView(Views.Public.class)
     private double itemPrice;
 
     public CopyOfItem(Item item) {

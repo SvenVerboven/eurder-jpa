@@ -1,33 +1,26 @@
-package com.example.eurder.service;
+package com.example.eurder.domain.order;
 
 import com.example.eurder.domain.item.CopyOfItem;
 import com.example.eurder.domain.item.Item;
 import com.example.eurder.domain.item.Itemrepository;
 import com.example.eurder.domain.itemgroup.ItemGroup;
 import com.example.eurder.domain.itemgroup.ItemGroupRepository;
-import com.example.eurder.domain.order.Order;
-import com.example.eurder.domain.order.OrderRepository;
 import com.example.eurder.domain.user.Address;
 import com.example.eurder.domain.user.PhoneNumber;
 import com.example.eurder.domain.user.User;
 import com.example.eurder.domain.user.UserRepository;
-import com.example.eurder.service.dto.CreateOrderDto;
-import com.example.eurder.service.dto.ItemGroupDto;
-import com.example.eurder.service.dto.OrderDto;
-import com.example.eurder.service.dto.OrdersDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Collection;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-class OrderServiceTest {
+@DataJpaTest
+class OrderRepositoryTest {
 
-    @Autowired
-    private OrderService orderService;
     @Autowired
     private OrderRepository orderRepository;
     @Autowired
@@ -38,27 +31,7 @@ class OrderServiceTest {
     private ItemGroupRepository itemGroupRepository;
 
     @Test
-    void createOrder() {
-        // Given
-        User user = userRepository.save(new User("Sven", "Verboven", "sven@gmail.com",
-                new Address("straatje", "30", "3290", "Schaffen", "België"),
-                new PhoneNumber("032", "456986521"),
-                "asecret"));
-        Item item = itemrepository.save(new Item("PS4", "a gaming console", 500.0, 10));
-        ItemGroupDto itemGroupDto = new ItemGroupDto(item.getId(), 1);
-        CreateOrderDto createOrderDto = new CreateOrderDto(user.getId(), List.of(itemGroupDto));
-        // When
-        OrderDto orderDto = orderService.createOrder(createOrderDto);
-        // Then
-        assertThat(orderDto).isNotNull();
-        assertThat(orderDto.getId()).isNotNull();
-        assertThat(orderDto.getItemGroups()).hasSize(1);
-        assertThat(orderDto.getUser()).isEqualTo(user);
-        assertThat(orderDto.getTotalPrice()).isEqualTo(500);
-    }
-
-    @Test
-    void getOrdersByUser_givenTwoOrdersOfAUser_thenReturnTwoOrders() {
+    void findAllByUserId_givenTwoOrdersOfAUser_thenReturnTwoOrders() {
         // Given
         User user = userRepository.save(new User("Sven", "Verboven", "sven@gmail.com",
                 new Address("straatje", "30", "3290", "Schaffen", "België"),
@@ -71,8 +44,9 @@ class OrderServiceTest {
         Order order2 = new Order(List.of(itemGroup2),user);
         orderRepository.saveAll(List.of(order1,order2));
         // When
-        OrdersDto ordersByUser = orderService.getOrdersOfUser(user.getId());
+        Collection<Order> ordersByUser = orderRepository.findAllByUser_Id(user.getId());
         // Then
-        assertThat(ordersByUser.getOrders()).hasSize(2);
+        assertThat(ordersByUser).hasSize(2);
+        assertThat(ordersByUser).containsExactlyInAnyOrder(order1,order2);
     }
 }

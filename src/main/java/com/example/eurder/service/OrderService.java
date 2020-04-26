@@ -14,6 +14,7 @@ import com.example.eurder.domain.user.UserRepository;
 import com.example.eurder.service.dto.CreateOrderDto;
 import com.example.eurder.service.dto.ItemGroupDto;
 import com.example.eurder.service.dto.OrderDto;
+import com.example.eurder.service.dto.OrdersDto;
 import com.example.eurder.service.mapper.OrderMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -49,6 +51,10 @@ public class OrderService {
         logger.info("Order is created");
         return OrderMapper.toDto(orderRepository.save(new Order(getItemGroups(createOrderDto.getOrderedItems()),
                         getUser(createOrderDto.getUserId()))));
+    }
+
+    public OrdersDto getOrdersOfUser(long userId){
+        return OrderMapper.toOrdersDto(orderRepository.findAllByUser_Id(userId));
     }
 
     private List<ItemGroup> getItemGroups(List<ItemGroupDto> itemGroupDtos) {

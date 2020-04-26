@@ -1,7 +1,9 @@
 package com.example.eurder.domain.order;
 
+import com.example.eurder.domain.Views;
 import com.example.eurder.domain.itemgroup.ItemGroup;
 import com.example.eurder.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.util.List;

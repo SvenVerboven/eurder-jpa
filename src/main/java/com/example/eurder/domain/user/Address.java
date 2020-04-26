@@ -1,5 +1,8 @@
 package com.example.eurder.domain.user;
 
+import com.example.eurder.domain.Views;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.util.Objects;
@@ -8,18 +11,23 @@ import java.util.Objects;
 public class Address {
 
     @Column(name = "street")
+    @JsonView(Views.Public.class)
     private String street;
 
     @Column(name = "houseNumber")
+    @JsonView(Views.Public.class)
     private String houseNumber;
 
     @Column(name = "zipp")
+    @JsonView(Views.Public.class)
     private String zipp;
 
     @Column(name = "city")
+    @JsonView(Views.Public.class)
     private String city;
 
     @Column(name = "country")
+    @JsonView(Views.Public.class)
     private String country;
 
     public Address(String street, String houseNumber, String zipp, String city, String country) {
