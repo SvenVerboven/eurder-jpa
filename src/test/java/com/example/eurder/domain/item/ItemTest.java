@@ -1,11 +1,10 @@
 package com.example.eurder.domain.item;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ItemTest {
 
@@ -17,7 +16,7 @@ class ItemTest {
         // When
         LocalDate shippingDay = item.getShippingDay(orderedAmountOfItems);
         // Then
-        Assertions.assertThat(shippingDay).isEqualTo(LocalDate.now().plusDays(1));
+        assertThat(shippingDay).isEqualTo(LocalDate.now().plusDays(1));
     }
     @Test
     void getShippingDate_whenStockAmountIsSmallerThenOrderedAmount_thenShippingDateIsTodayPlusSevenDays() {
@@ -27,6 +26,16 @@ class ItemTest {
         // When
         LocalDate shippingDay = item.getShippingDay(orderedAmountOfItems);
         // Then
-        Assertions.assertThat(shippingDay).isEqualTo(LocalDate.now().plusDays(7));
+        assertThat(shippingDay).isEqualTo(LocalDate.now().plusDays(7));
+    }
+
+    @Test
+    void decreaseStockAmount() {
+        // Given
+        Item item = new Item("PS4", "a gaming console", 500.0, 10);
+        // When
+        item.decreaseStockAmount(5);
+        // Then
+        assertThat(item.getStockAmount()).isEqualTo(5);
     }
 }

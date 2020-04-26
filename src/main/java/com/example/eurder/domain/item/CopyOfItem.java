@@ -15,17 +15,25 @@ public class CopyOfItem {
     @Column(name = "itemPrice")
     private double itemPrice;
 
-    @Column(name = "itemStockAmount")
-    private int itemStockAmount;
-
-    public CopyOfItem(String itemName, String itemDescription, double itemPrice, int itemStockAmount) {
-        this.itemName = itemName;
-        this.itemDescription = itemDescription;
-        this.itemPrice = itemPrice;
-        this.itemStockAmount = itemStockAmount;
+    public CopyOfItem(Item item) {
+        this.itemName = item.getName();
+        this.itemDescription = item.getDescription();
+        this.itemPrice = item.getPrice();
     }
 
     public CopyOfItem() {
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public double getItemPrice() {
+        return itemPrice;
     }
 }
 

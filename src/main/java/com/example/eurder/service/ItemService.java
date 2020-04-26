@@ -24,7 +24,7 @@ public class ItemService {
 
 
     public ItemDto createItem(CreateItemDto createItemDto) {
-        logger.info("Item created");
+        logger.info("Item is created");
         return ItemMapper.toDto(itemrepository.save(ItemMapper.toItem(createItemDto)));
     }
 

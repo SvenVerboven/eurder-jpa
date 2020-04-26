@@ -8,7 +8,8 @@ import java.time.LocalDate;
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name= "ITEM_SEQUENCE", sequenceName = "ITEM_SEQUENCE_ID", allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="ITEM_SEQUENCE")
     private long id;
 
     @Column(name = "name")
@@ -74,5 +75,9 @@ public class Item {
             return LocalDate.now().plusDays(1);
         }
         return LocalDate.now().plusDays(7);
+    }
+
+    public void decreaseStockAmount(int amount){
+        this.stockAmount -= amount;
     }
 }

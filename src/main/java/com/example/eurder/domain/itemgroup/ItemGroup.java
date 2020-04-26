@@ -1,4 +1,4 @@
-package com.example.eurder.domain.order;
+package com.example.eurder.domain.itemgroup;
 
 import com.example.eurder.domain.item.CopyOfItem;
 
@@ -10,7 +10,8 @@ import java.time.LocalDate;
 public class ItemGroup {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name= "ITEMGROUP_SEQUENCE", sequenceName = "ITEMGROUP_SEQUENCE_ID", allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="ITEMGROUP_SEQUENCE")
     private long id;
 
     @Embedded
@@ -29,5 +30,21 @@ public class ItemGroup {
         this.copyOfItem = copyOfItem;
         this.amountOfItems = amountOfItems;
         this.shippingDate = shippingDate;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public CopyOfItem getCopyOfItem() {
+        return copyOfItem;
+    }
+
+    public int getAmountOfItems() {
+        return amountOfItems;
+    }
+
+    public LocalDate getShippingDate() {
+        return shippingDate;
     }
 }
