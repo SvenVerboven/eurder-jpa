@@ -2,7 +2,7 @@ package com.example.eurder.domain.order;
 
 import com.example.eurder.domain.item.CopyOfItem;
 import com.example.eurder.domain.item.Item;
-import com.example.eurder.domain.item.Itemrepository;
+import com.example.eurder.domain.item.ItemRepository;
 import com.example.eurder.domain.itemgroup.ItemGroup;
 import com.example.eurder.domain.itemgroup.ItemGroupRepository;
 import com.example.eurder.domain.user.Address;
@@ -26,7 +26,7 @@ class OrderRepositoryTest {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private Itemrepository itemrepository;
+    private ItemRepository itemrepository;
     @Autowired
     private ItemGroupRepository itemGroupRepository;
 

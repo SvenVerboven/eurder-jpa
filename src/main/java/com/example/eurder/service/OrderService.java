@@ -4,7 +4,7 @@ import com.example.eurder.domain.exceptions.ItemDoesNotExistException;
 import com.example.eurder.domain.exceptions.UserDoesNotExistException;
 import com.example.eurder.domain.item.CopyOfItem;
 import com.example.eurder.domain.item.Item;
-import com.example.eurder.domain.item.Itemrepository;
+import com.example.eurder.domain.item.ItemRepository;
 import com.example.eurder.domain.itemgroup.ItemGroup;
 import com.example.eurder.domain.itemgroup.ItemGroupRepository;
 import com.example.eurder.domain.order.Order;
@@ -24,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -34,12 +33,12 @@ public class OrderService {
     private final Logger logger = LoggerFactory.getLogger(OrderService.class);
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
-    private final Itemrepository itemrepository;
+    private final ItemRepository itemrepository;
     private final ItemGroupRepository itemGroupRepository;
 
     @Autowired
 
-    public OrderService(OrderRepository orderRepository, UserRepository userRepository, Itemrepository itemrepository, ItemGroupRepository itemGroupRepository) {
+    public OrderService(OrderRepository orderRepository, UserRepository userRepository, ItemRepository itemrepository, ItemGroupRepository itemGroupRepository) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.itemrepository = itemrepository;

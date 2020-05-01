@@ -2,7 +2,7 @@ package com.example.eurder.service;
 
 import com.example.eurder.domain.exceptions.ItemDoesNotExistException;
 import com.example.eurder.domain.item.Item;
-import com.example.eurder.domain.item.Itemrepository;
+import com.example.eurder.domain.item.ItemRepository;
 import com.example.eurder.service.dto.CreateItemDto;
 import com.example.eurder.service.dto.ItemDto;
 import com.example.eurder.service.mapper.ItemMapper;
@@ -16,9 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class ItemService {
 
     private final Logger logger = LoggerFactory.getLogger(ItemService.class);
-    private final Itemrepository itemrepository;
+    private final ItemRepository itemrepository;
 
-    public ItemService(Itemrepository itemrepository) {
+    public ItemService(ItemRepository itemrepository) {
         this.itemrepository = itemrepository;
     }
 

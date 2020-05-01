@@ -2,7 +2,7 @@ package com.example.eurder.service;
 
 import com.example.eurder.domain.exceptions.ItemDoesNotExistException;
 import com.example.eurder.domain.item.Item;
-import com.example.eurder.domain.item.Itemrepository;
+import com.example.eurder.domain.item.ItemRepository;
 import com.example.eurder.service.dto.CreateItemDto;
 import com.example.eurder.service.dto.ItemDto;
 import org.junit.jupiter.api.AfterEach;
@@ -19,7 +19,7 @@ class ItemServiceTest {
     @Autowired
     private ItemService itemService;
     @Autowired
-    private Itemrepository itemrepository;
+    private ItemRepository itemrepository;
 
     @Test
     void createItem() {
