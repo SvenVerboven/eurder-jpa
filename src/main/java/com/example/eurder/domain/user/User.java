@@ -7,12 +7,13 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
     @SequenceGenerator(name= "USER_SEQUENCE", sequenceName = "USER_SEQUENCE_ID", allocationSize = 1)
     @GeneratedValue(strategy=GenerationType.AUTO, generator="USER_SEQUENCE")
+    @Column(name = "id")
     private long id;
 
     @Column(name = "firstName")
