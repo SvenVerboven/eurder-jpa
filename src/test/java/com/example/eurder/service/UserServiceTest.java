@@ -1,6 +1,7 @@
 package com.example.eurder.service;
 
 import com.example.eurder.domain.exceptions.UserDoesNotExistException;
+import com.example.eurder.domain.order.OrderRepository;
 import com.example.eurder.domain.user.*;
 import com.example.eurder.service.dto.CreateUserDto;
 import com.example.eurder.service.dto.UserDto;
@@ -21,6 +22,8 @@ public class UserServiceTest {
     private UserService userService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Test
     void createUser() {
@@ -46,11 +49,11 @@ public class UserServiceTest {
         // Given
         userRepository.save(new User("Sven", "Verboven", "sven@gmail.com",
                 new Address("straatje", "30", "3290", "Schaffen", "België"),
-                new PhoneNumber("032","456986521"),
+                new PhoneNumber("032", "456986521"),
                 "asecret"));
         userRepository.save(new User("Melissa", "Morren", "melissa@gmail.com",
                 new Address("straatje", "30", "3290", "Schaffen", "België"),
-                new PhoneNumber("032","458753216"),
+                new PhoneNumber("032", "458753216"),
                 "tralalala"));
         // When
         Collection<UserDto> users = userService.getAllUsers();
@@ -63,7 +66,7 @@ public class UserServiceTest {
         // Given
         User user = userRepository.save(new User("Sven", "Verboven", "sven@gmail.com",
                 new Address("straatje", "30", "3290", "Schaffen", "België"),
-                new PhoneNumber("032","456986521"),
+                new PhoneNumber("032", "456986521"),
                 "asecret"));
         // When
         UserDto userDto = userService.getUser(user.getId());
@@ -85,13 +88,14 @@ public class UserServiceTest {
         long userId = 100;
         // When
         // Then
-        assertThatThrownBy(()-> userService.getUser(userId))
+        assertThatThrownBy(() -> userService.getUser(userId))
                 .isInstanceOf(UserDoesNotExistException.class)
                 .hasMessage("User with id: " + userId + " does not exist");
     }
 
     @AfterEach
     void tearDown() {
+        orderRepository.deleteAll();
         userRepository.deleteAll();
     }
 }
