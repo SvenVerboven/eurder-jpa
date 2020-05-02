@@ -28,7 +28,7 @@ public class ItemController {
 
     @PutMapping(path = "/{itemId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public ItemDto updateItem(@PathVariable long itemId, @RequestBody CreateItemDto createItemDto) {
+    public ItemDto updateItem(@PathVariable long itemId, @Valid @RequestBody CreateItemDto createItemDto) {
         return itemService.updateItem(itemId, createItemDto);
     }
 
