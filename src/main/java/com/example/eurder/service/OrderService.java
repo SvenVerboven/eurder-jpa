@@ -53,6 +53,7 @@ public class OrderService {
     }
 
     public OrdersDto getOrdersOfUser(long userId){
+        logger.info("Returned orders of user");
         return OrderMapper.toOrdersDto(orderRepository.findAllByUser_Id(userId));
     }
 
