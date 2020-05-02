@@ -8,7 +8,8 @@ import java.time.LocalDate;
 public class Item {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @SequenceGenerator(name= "ITEM_SEQUENCE", sequenceName = "ITEM_SEQUENCE_ID", allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="ITEM_SEQUENCE")
     private long id;
 
     @Column(name = "name")

@@ -12,7 +12,8 @@ import java.time.LocalDate;
 public class ItemGroup {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @SequenceGenerator(name= "ITEMGROUP_SEQUENCE", sequenceName = "ITEMGROUP_SEQUENCE_ID", allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="ITEMGROUP_SEQUENCE")
     @JsonView(Views.Detailed.class)
     private long id;
 
