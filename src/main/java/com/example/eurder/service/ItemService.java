@@ -3,6 +3,7 @@ package com.example.eurder.service;
 import com.example.eurder.domain.exceptions.ItemDoesNotExistException;
 import com.example.eurder.domain.item.Item;
 import com.example.eurder.domain.item.ItemRepository;
+import com.example.eurder.domain.item.UrgencyIndicator;
 import com.example.eurder.service.dto.CreateItemDto;
 import com.example.eurder.service.dto.ItemDto;
 import com.example.eurder.service.mapper.ItemMapper;
@@ -10,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collection;
 
 @Service
 @Transactional
@@ -39,5 +42,9 @@ public class ItemService {
         item.setStockAmount(createItemDto.getStockAmount());
         logger.info("Updated item");
         return ItemMapper.toDto(item);
+    }
+
+    public Collection<ItemDto> getItems(UrgencyIndicator urgencyIndicator){
+        return ItemMapper.toDto((Collection<Item>) itemrepository.findAll());
     }
 }

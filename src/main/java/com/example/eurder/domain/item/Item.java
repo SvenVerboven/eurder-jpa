@@ -80,4 +80,9 @@ public class Item {
     public void decreaseStockAmount(int amount){
         this.stockAmount -= amount;
     }
+
+    public UrgencyIndicator getUrgencyIndicator(){
+        return UrgencyIndicator.getUrgencyIndicator(this.stockAmount);
+    }
+
 }

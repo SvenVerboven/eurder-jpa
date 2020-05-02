@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
 
 @RestController
 @RequestMapping(path = "/items")
@@ -29,5 +30,11 @@ public class ItemController {
     @ResponseStatus(HttpStatus.CREATED)
     public ItemDto updateItem(@PathVariable long itemId, @RequestBody CreateItemDto createItemDto) {
         return itemService.updateItem(itemId, createItemDto);
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public Collection<ItemDto> getItems(){
+        return itemService.getItems(null);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.eurder.service.dto;
 
+import com.example.eurder.domain.item.UrgencyIndicator;
+
 public class ItemDto {
 
     private final long id;
@@ -7,13 +9,15 @@ public class ItemDto {
     private final String description;
     private final double price;
     private final int stockAmount;
+    private final UrgencyIndicator urgencyIndicator;
 
-    public ItemDto(long id, String name, String description, double price, int stockAmount) {
+    public ItemDto(long id, String name, String description, double price, int stockAmount, UrgencyIndicator urgencyIndicator) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.stockAmount = stockAmount;
+        this.urgencyIndicator = urgencyIndicator;
     }
 
     public long getId() {
@@ -34,5 +38,9 @@ public class ItemDto {
 
     public int getStockAmount() {
         return stockAmount;
+    }
+
+    public UrgencyIndicator getUrgencyIndicator() {
+        return urgencyIndicator;
     }
 }
