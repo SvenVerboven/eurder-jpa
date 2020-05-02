@@ -2,15 +2,18 @@ package com.example.eurder.domain.user;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 @Embeddable
 public class PhoneNumber {
 
     @Column(name = "countryCode")
+    @NotEmpty(message = "country code can't be empty")
     private String countryCode;
 
     @Column(name = "number")
+    @NotEmpty(message = "phone number can't be empty")
     private String number;
 
     public PhoneNumber(String countryCode, String number) {

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 @Embeddable
@@ -12,22 +13,27 @@ public class Address {
 
     @Column(name = "street")
     @JsonView(Views.Public.class)
+    @NotEmpty(message = "street can't be empty")
     private String street;
 
     @Column(name = "houseNumber")
     @JsonView(Views.Public.class)
+    @NotEmpty(message = "house number can't be empty")
     private String houseNumber;
 
     @Column(name = "zipp")
     @JsonView(Views.Public.class)
+    @NotEmpty(message = "zipp can't be empty")
     private String zipp;
 
     @Column(name = "city")
     @JsonView(Views.Public.class)
+    @NotEmpty(message = "city can't be empty")
     private String city;
 
     @Column(name = "country")
     @JsonView(Views.Public.class)
+    @NotEmpty(message = "country can't be empty")
     private String country;
 
     public Address(String street, String houseNumber, String zipp, String city, String country) {
