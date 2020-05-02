@@ -13,8 +13,7 @@ import java.util.List;
 public class Order {
 
     @Id
-    @SequenceGenerator(name= "ORDER_SEQUENCE", sequenceName = "ORDER_SEQUENCE_ID", allocationSize = 1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="ORDER_SEQUENCE")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
     @OneToMany
