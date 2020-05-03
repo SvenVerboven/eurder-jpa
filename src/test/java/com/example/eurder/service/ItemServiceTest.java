@@ -5,10 +5,13 @@ import com.example.eurder.domain.item.Item;
 import com.example.eurder.domain.item.ItemRepository;
 import com.example.eurder.service.dto.CreateItemDto;
 import com.example.eurder.service.dto.ItemDto;
+import com.example.eurder.service.mapper.ItemMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -62,6 +65,18 @@ class ItemServiceTest {
         assertThatThrownBy(()-> itemService.updateItem(itemId, createItemDto))
         .isInstanceOf(ItemDoesNotExistException.class)
         .hasMessage("Item with id: " + itemId + " does not exist");
+    }
+
+    @Test
+    void getItems_givenTwoItemsAndNoUrgencyIndicator_thenReturnAllItemsSortedFromLowStockToHighStock() {
+        // Given
+        ItemDto mediumStockItem =  ItemMapper.toDto(itemrepository.save(new Item("XBOX", "a gaming console", 350.0, 6)));
+        ItemDto highStockItem =  ItemMapper.toDto(itemrepository.save(new Item("WII", "a gaming console", 200.0, 15)));
+        ItemDto lowStockItem =  ItemMapper.toDto(itemrepository.save(new Item("PS4", "a gaming console", 500.0, 2)));
+        // When
+        Collection<ItemDto> items = itemService.getItems(null);
+        // Then
+        assertThat(items).containsExactly(lowStockItem,mediumStockItem,highStockItem);
     }
 
     @AfterEach

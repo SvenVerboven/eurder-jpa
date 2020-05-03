@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -45,6 +47,10 @@ public class ItemService {
     }
 
     public Collection<ItemDto> getItems(UrgencyIndicator urgencyIndicator){
-        return ItemMapper.toDto((Collection<Item>) itemrepository.findAll());
+        logger.info("Returned items");
+        return ItemMapper.toDto((Collection<Item>) itemrepository.findAll())
+                .stream()
+                .sorted(Comparator.comparingInt(item -> item.getUrgencyIndicator().ordinal()))
+                .collect(Collectors.toList());
     }
 }

@@ -2,6 +2,8 @@ package com.example.eurder.service.dto;
 
 import com.example.eurder.domain.item.UrgencyIndicator;
 
+import java.util.Objects;
+
 public class ItemDto {
 
     private final long id;
@@ -42,5 +44,18 @@ public class ItemDto {
 
     public UrgencyIndicator getUrgencyIndicator() {
         return urgencyIndicator;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ItemDto itemDto = (ItemDto) o;
+        return getId() == itemDto.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }
