@@ -37,10 +37,10 @@ public class EurderApplication {
                 "1.0",
                 "Free to use",
                 new springfox.documentation.service.Contact("Sven Verboven",
-                        "http://localhost8080",
+                        "https://tenor.com/view/programming-gif-8508216",
                         "sven_verboven@hotmail.com"),
                 "API License",
-                "http://localhost8080",
+                "https://tenor.com/view/whatever-sarcasm-oh-well-pssh-yeah-okay-gif-4951048",
                 Collections.emptyList());
     }
 }
