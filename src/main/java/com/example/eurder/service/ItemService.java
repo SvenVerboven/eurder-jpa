@@ -34,7 +34,7 @@ public class ItemService {
     }
 
     public ItemDto updateItem(long itemId, CreateItemDto createItemDto) {
-        if(itemrepository.findById(itemId).isEmpty()){
+        if (itemrepository.findById(itemId).isEmpty()) {
             throw new ItemDoesNotExistException(itemId);
         }
         Item item = itemrepository.findById(itemId).get();
@@ -46,11 +46,17 @@ public class ItemService {
         return ItemMapper.toDto(item);
     }
 
-    public Collection<ItemDto> getItems(UrgencyIndicator urgencyIndicator){
+    public Collection<ItemDto> getItems(UrgencyIndicator urgencyIndicator) {
         logger.info("Returned items");
+        if (urgencyIndicator == null) {
+            return ItemMapper.toDto((Collection<Item>) itemrepository.findAll())
+                    .stream()
+                    .sorted(Comparator.comparingInt(item -> item.getUrgencyIndicator().ordinal()))
+                    .collect(Collectors.toList());
+        }
         return ItemMapper.toDto((Collection<Item>) itemrepository.findAll())
                 .stream()
-                .sorted(Comparator.comparingInt(item -> item.getUrgencyIndicator().ordinal()))
+                .filter(itemDto -> itemDto.getUrgencyIndicator().equals(urgencyIndicator))
                 .collect(Collectors.toList());
     }
 }

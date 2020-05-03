@@ -1,5 +1,6 @@
 package com.example.eurder.api;
 
+import com.example.eurder.domain.item.UrgencyIndicator;
 import com.example.eurder.service.ItemService;
 import com.example.eurder.service.dto.CreateItemDto;
 import com.example.eurder.service.dto.ItemDto;
@@ -34,7 +35,7 @@ public class ItemController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public Collection<ItemDto> getItems(){
-        return itemService.getItems(null);
+    public Collection<ItemDto> getItems(@RequestParam(required = false)UrgencyIndicator urgencyIndicator){
+        return itemService.getItems(urgencyIndicator);
     }
 }

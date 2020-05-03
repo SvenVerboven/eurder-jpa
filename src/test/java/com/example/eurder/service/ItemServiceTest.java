@@ -3,6 +3,7 @@ package com.example.eurder.service;
 import com.example.eurder.domain.exceptions.ItemDoesNotExistException;
 import com.example.eurder.domain.item.Item;
 import com.example.eurder.domain.item.ItemRepository;
+import com.example.eurder.domain.item.UrgencyIndicator;
 import com.example.eurder.service.dto.CreateItemDto;
 import com.example.eurder.service.dto.ItemDto;
 import com.example.eurder.service.mapper.ItemMapper;
@@ -68,7 +69,7 @@ class ItemServiceTest {
     }
 
     @Test
-    void getItems_givenTwoItemsAndNoUrgencyIndicator_thenReturnAllItemsSortedFromLowStockToHighStock() {
+    void getItems_givenItemsAndNoUrgencyIndicator_thenReturnAllItemsSortedFromLowStockToHighStock() {
         // Given
         ItemDto mediumStockItem =  ItemMapper.toDto(itemrepository.save(new Item("XBOX", "a gaming console", 350.0, 6)));
         ItemDto highStockItem =  ItemMapper.toDto(itemrepository.save(new Item("WII", "a gaming console", 200.0, 15)));
@@ -77,6 +78,42 @@ class ItemServiceTest {
         Collection<ItemDto> items = itemService.getItems(null);
         // Then
         assertThat(items).containsExactly(lowStockItem,mediumStockItem,highStockItem);
+    }
+
+    @Test
+    void getItems_givenItemsAndUrgencyIndicatorStockLow_thenReturnAllItemsWithStockLow() {
+        // Given
+        ItemDto mediumStockItem =  ItemMapper.toDto(itemrepository.save(new Item("XBOX", "a gaming console", 350.0, 6)));
+        ItemDto highStockItem =  ItemMapper.toDto(itemrepository.save(new Item("WII", "a gaming console", 200.0, 15)));
+        ItemDto lowStockItem =  ItemMapper.toDto(itemrepository.save(new Item("PS4", "a gaming console", 500.0, 2)));
+        // When
+        Collection<ItemDto> items = itemService.getItems(UrgencyIndicator.STOCK_LOW);
+        // Then
+        assertThat(items).containsExactly(lowStockItem);
+    }
+
+    @Test
+    void getItems_givenItemsAndUrgencyIndicatorStockMedium_thenReturnAllItemsWithStockMedium() {
+        // Given
+        ItemDto mediumStockItem =  ItemMapper.toDto(itemrepository.save(new Item("XBOX", "a gaming console", 350.0, 6)));
+        ItemDto highStockItem =  ItemMapper.toDto(itemrepository.save(new Item("WII", "a gaming console", 200.0, 15)));
+        ItemDto lowStockItem =  ItemMapper.toDto(itemrepository.save(new Item("PS4", "a gaming console", 500.0, 2)));
+        // When
+        Collection<ItemDto> items = itemService.getItems(UrgencyIndicator.STOCK_MEDIUM);
+        // Then
+        assertThat(items).containsExactly(mediumStockItem);
+    }
+
+    @Test
+    void getItems_givenItemsAndUrgencyIndicatorStockHigh_thenReturnAllItemsWithStockHigh() {
+        // Given
+        ItemDto mediumStockItem =  ItemMapper.toDto(itemrepository.save(new Item("XBOX", "a gaming console", 350.0, 6)));
+        ItemDto highStockItem =  ItemMapper.toDto(itemrepository.save(new Item("WII", "a gaming console", 200.0, 15)));
+        ItemDto lowStockItem =  ItemMapper.toDto(itemrepository.save(new Item("PS4", "a gaming console", 500.0, 2)));
+        // When
+        Collection<ItemDto> items = itemService.getItems(UrgencyIndicator.STOCK_HIGH);
+        // Then
+        assertThat(items).containsExactly(highStockItem);
     }
 
     @AfterEach
