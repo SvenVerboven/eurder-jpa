@@ -4,7 +4,6 @@ import com.example.eurder.domain.item.UrgencyIndicator;
 import com.example.eurder.service.ItemService;
 import com.example.eurder.service.dto.CreateItemDto;
 import com.example.eurder.service.dto.ItemDto;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
