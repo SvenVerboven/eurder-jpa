@@ -83,8 +83,8 @@ class ItemServiceTest {
     @Test
     void getItems_givenItemsAndUrgencyIndicatorStockLow_thenReturnAllItemsWithStockLow() {
         // Given
-        ItemDto mediumStockItem =  ItemMapper.toDto(itemrepository.save(new Item("XBOX", "a gaming console", 350.0, 6)));
-        ItemDto highStockItem =  ItemMapper.toDto(itemrepository.save(new Item("WII", "a gaming console", 200.0, 15)));
+        ItemMapper.toDto(itemrepository.save(new Item("XBOX", "a gaming console", 350.0, 6)));
+        ItemMapper.toDto(itemrepository.save(new Item("WII", "a gaming console", 200.0, 15)));
         ItemDto lowStockItem =  ItemMapper.toDto(itemrepository.save(new Item("PS4", "a gaming console", 500.0, 2)));
         // When
         Collection<ItemDto> items = itemService.getItems(UrgencyIndicator.STOCK_LOW);
@@ -96,8 +96,8 @@ class ItemServiceTest {
     void getItems_givenItemsAndUrgencyIndicatorStockMedium_thenReturnAllItemsWithStockMedium() {
         // Given
         ItemDto mediumStockItem =  ItemMapper.toDto(itemrepository.save(new Item("XBOX", "a gaming console", 350.0, 6)));
-        ItemDto highStockItem =  ItemMapper.toDto(itemrepository.save(new Item("WII", "a gaming console", 200.0, 15)));
-        ItemDto lowStockItem =  ItemMapper.toDto(itemrepository.save(new Item("PS4", "a gaming console", 500.0, 2)));
+        ItemMapper.toDto(itemrepository.save(new Item("WII", "a gaming console", 200.0, 15)));
+        ItemMapper.toDto(itemrepository.save(new Item("PS4", "a gaming console", 500.0, 2)));
         // When
         Collection<ItemDto> items = itemService.getItems(UrgencyIndicator.STOCK_MEDIUM);
         // Then
@@ -107,9 +107,9 @@ class ItemServiceTest {
     @Test
     void getItems_givenItemsAndUrgencyIndicatorStockHigh_thenReturnAllItemsWithStockHigh() {
         // Given
-        ItemDto mediumStockItem =  ItemMapper.toDto(itemrepository.save(new Item("XBOX", "a gaming console", 350.0, 6)));
+        ItemMapper.toDto(itemrepository.save(new Item("XBOX", "a gaming console", 350.0, 6)));
         ItemDto highStockItem =  ItemMapper.toDto(itemrepository.save(new Item("WII", "a gaming console", 200.0, 15)));
-        ItemDto lowStockItem =  ItemMapper.toDto(itemrepository.save(new Item("PS4", "a gaming console", 500.0, 2)));
+        ItemMapper.toDto(itemrepository.save(new Item("PS4", "a gaming console", 500.0, 2)));
         // When
         Collection<ItemDto> items = itemService.getItems(UrgencyIndicator.STOCK_HIGH);
         // Then
