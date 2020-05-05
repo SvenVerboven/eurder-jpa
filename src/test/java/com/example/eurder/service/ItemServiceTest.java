@@ -64,8 +64,7 @@ class ItemServiceTest {
         // When
         // Then
         assertThatThrownBy(()-> itemService.updateItem(itemId, createItemDto))
-        .isInstanceOf(ItemDoesNotExistException.class)
-        .hasMessage("Item with id: " + itemId + " does not exist");
+        .isInstanceOf(ItemDoesNotExistException.class);
     }
 
     @Test
@@ -114,6 +113,26 @@ class ItemServiceTest {
         Collection<ItemDto> items = itemService.getItems(UrgencyIndicator.STOCK_HIGH);
         // Then
         assertThat(items).containsExactly(highStockItem);
+    }
+
+    @Test
+    void getItem_givenItemAndItemId_thenReturnItem() {
+        // Given
+        ItemDto expected = ItemMapper.toDto(itemrepository.save(new Item("XBOX", "a gaming console", 350.0, 6)));
+        // When
+        ItemDto actual = itemService.getItem(expected.getId());
+        // Then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void getItem_givenWrongItemId_thenThrowItemDoesNotExistException() {
+        // Given
+        long id = 100;
+        // When
+        // Then
+        assertThatThrownBy(()-> itemService.getItem(id))
+        .isInstanceOf(ItemDoesNotExistException.class);
     }
 
     @AfterEach

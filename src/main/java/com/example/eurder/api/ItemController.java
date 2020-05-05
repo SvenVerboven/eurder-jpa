@@ -38,7 +38,14 @@ public class ItemController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @CrossOrigin(origins = "http://localhost:4200")
-    public Collection<ItemDto> getItems(@RequestParam(required = false)UrgencyIndicator urgencyIndicator){
+    public Collection<ItemDto> getItems(@RequestParam(required = false) UrgencyIndicator urgencyIndicator) {
         return itemService.getItems(urgencyIndicator);
+    }
+
+    @GetMapping(path = "/{itemId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ItemDto getItem(@PathVariable long itemId) {
+        return itemService.getItem(itemId);
     }
 }

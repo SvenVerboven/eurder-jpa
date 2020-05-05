@@ -59,4 +59,11 @@ public class ItemService {
                 .filter(itemDto -> itemDto.getUrgencyIndicator().equals(urgencyIndicator))
                 .collect(Collectors.toList());
     }
+
+    public ItemDto getItem(long id) {
+        if(itemrepository.findById(id).isEmpty()){
+            throw new ItemDoesNotExistException(id);
+        }
+        return ItemMapper.toDto(itemrepository.findById(id).get());
+    }
 }
