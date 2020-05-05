@@ -24,7 +24,7 @@ public class EurderApplication {
     public Docket swaggerConfiguration() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .paths(PathSelectors.ant("/*")) //restriction based on url
+                .paths(PathSelectors.ant("/**")) //restriction based on url
                 .apis(RequestHandlerSelectors.basePackage("com.example.eurder")) //restriction based on package name
                 .build()
                 .apiInfo(apiDetails());
