@@ -22,6 +22,7 @@ public class UserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
+    @CrossOrigin(origins = "http://localhost:4200")
     public UserDto createUser(@Valid @RequestBody CreateUserDto createUserDto) {
         return userService.createUser(createUserDto);
     }
@@ -29,12 +30,14 @@ public class UserController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
+    @CrossOrigin(origins = "http://localhost:4200")
     public Collection<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
+    @CrossOrigin(origins = "http://localhost:4200")
     public UserDto getUser(@PathVariable long userId) {
         return userService.getUser(userId);
     }

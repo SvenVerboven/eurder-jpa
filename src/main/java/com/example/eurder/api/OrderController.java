@@ -24,6 +24,7 @@ public class OrderController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
+    @CrossOrigin(origins = "http://localhost:4200")
     public OrderDto createOrder(@RequestBody CreateOrderDto createOrderDto){
         return orderService.createOrder(createOrderDto);
     }
@@ -31,6 +32,7 @@ public class OrderController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @JsonView(Views.Public.class)
+    @CrossOrigin(origins = "http://localhost:4200")
     public OrdersDto getOrdersOfUser(@RequestParam long userId){
         return orderService.getOrdersOfUser(userId);
     }
