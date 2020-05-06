@@ -28,7 +28,6 @@ public class Address {
 
     @Column(name = "city")
     @JsonView(Views.Public.class)
-    @NotEmpty(message = "city can't be empty")
     private String city;
 
     @Column(name = "country")

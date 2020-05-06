@@ -18,7 +18,6 @@ public class CreateUserDto {
     private final Address address;
     @Valid
     private final PhoneNumber phoneNumber;
-    @NotEmpty(message = "password can't be empty")
     private final String password;
 
     public CreateUserDto(String firstName, String lastName, String email, Address address, PhoneNumber phoneNumber, String password) {
