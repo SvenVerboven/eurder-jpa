@@ -41,4 +41,11 @@ public class UserController {
     public UserDto getUser(@PathVariable long userId) {
         return userService.getUser(userId);
     }
+
+    @PutMapping(path = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public UserDto updateUser(@PathVariable long userId, CreateUserDto createUserDto){
+        return userService.updateUser(userId, createUserDto);
+    }
 }
