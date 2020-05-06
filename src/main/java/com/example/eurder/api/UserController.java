@@ -27,7 +27,6 @@ public class UserController {
         return userService.createUser(createUserDto);
     }
 
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @CrossOrigin(origins = "http://localhost:4200")
@@ -45,7 +44,7 @@ public class UserController {
     @PutMapping(path = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @CrossOrigin(origins = "http://localhost:4200")
-    public UserDto updateUser(@PathVariable long userId, CreateUserDto createUserDto){
+    public UserDto updateUser(@PathVariable long userId, @Valid @RequestBody CreateUserDto createUserDto){
         return userService.updateUser(userId, createUserDto);
     }
 }
