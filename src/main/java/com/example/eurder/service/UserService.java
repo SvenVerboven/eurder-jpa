@@ -43,4 +43,18 @@ public class UserService {
         logger.info("Returned user");
         return UserMapper.toDto(userRepository.findById(userId).get());
     }
+
+    public UserDto updateUser(long id, CreateUserDto createUserDto) {
+        if(userRepository.findById(id).isEmpty()){
+            throw new UserDoesNotExistException(id);
+        }
+        User user = userRepository.findById(id).get();
+        user.setFirstName(createUserDto.getFirstName());
+        user.setLastName(createUserDto.getLastName());
+        user.setEmail(createUserDto.getEmail());
+        user.setAddress(createUserDto.getAddress());
+        user.setPhoneNumber(createUserDto.getPhoneNumber());
+        user.setPassword(createUserDto.getPassword());
+        return UserMapper.toDto(user);
+    }
 }

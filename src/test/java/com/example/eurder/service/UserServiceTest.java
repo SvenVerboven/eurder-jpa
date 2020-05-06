@@ -5,6 +5,7 @@ import com.example.eurder.domain.order.OrderRepository;
 import com.example.eurder.domain.user.*;
 import com.example.eurder.service.dto.CreateUserDto;
 import com.example.eurder.service.dto.UserDto;
+import com.example.eurder.service.mapper.UserMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +92,29 @@ public class UserServiceTest {
         assertThatThrownBy(() -> userService.getUser(userId))
                 .isInstanceOf(UserDoesNotExistException.class)
                 .hasMessage("User with id: " + userId + " does not exist");
+    }
+
+    @Test
+    void updateUser_givenCreateUserDtoAndUserId_thenUserIsSavedAndReturned() {
+        // Given
+        UserDto userDto = UserMapper.toDto(userRepository.save(new User("Sven", "Verboven", "sven@gmail.com",
+                new Address("straatje", "30", "3290", "Schaffen", "België"),
+                new PhoneNumber("032", "456986521"),
+                "asecret")));
+        CreateUserDto expected = new CreateUserDto("Dirk", "Vanderstukken", "dirk@gmail.com",
+                new Address("kerkstraat", "15", "3295", "Testelt", "Nederland"),
+                new PhoneNumber("034", "4896532114"),
+                "password");
+        // When
+        UserDto actual = userService.updateUser(userDto.getId(), expected);
+        // Then
+        assertThat(actual.getId()).isEqualTo(userDto.getId());
+        assertThat(actual.getFirstName()).isEqualTo(expected.getFirstName());
+        assertThat(actual.getLastName()).isEqualTo(expected.getLastName());
+        assertThat(actual.getEmail()).isEqualTo(expected.getEmail());
+        assertThat(actual.getAddress()).isEqualTo(expected.getAddress());
+        assertThat(actual.getPhoneNumber()).isEqualTo(expected.getPhoneNumber());
+        assertThat(actual.getPassword()).isEqualTo(expected.getPassword());
     }
 
     @AfterEach
