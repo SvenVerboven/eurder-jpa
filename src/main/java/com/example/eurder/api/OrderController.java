@@ -25,7 +25,6 @@ public class OrderController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-//    @CrossOrigin(origins = "https://order-sven-verboven-gui.herokuapp.com")
     public OrderDto createOrder(@RequestBody CreateOrderDto createOrderDto){
         return orderService.createOrder(createOrderDto);
     }
@@ -33,7 +32,6 @@ public class OrderController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @JsonView(Views.Public.class)
-//    @CrossOrigin(origins = "https://order-sven-verboven-gui.herokuapp.com")
     public OrdersDto getOrdersOfUser(@RequestParam long userId){
         return orderService.getOrdersOfUser(userId);
     }
