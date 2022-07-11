@@ -1,9 +1,15 @@
 package com.example.eurder.domain.user;
 
-import com.example.eurder.domain.Views;
-import com.fasterxml.jackson.annotation.JsonView;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
@@ -11,8 +17,8 @@ import java.util.Objects;
 public class User {
 
     @Id
-    @SequenceGenerator(name= "USER_SEQUENCE", sequenceName = "USER_SEQUENCE_ID", allocationSize = 1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="USER_SEQUENCE")
+    @SequenceGenerator(name = "USER_SEQUENCE", sequenceName = "USER_SEQUENCE_ID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "USER_SEQUENCE")
     private long id;
 
     @Column(name = "firstName")

@@ -1,11 +1,17 @@
 package com.example.eurder.domain.order;
 
-import com.example.eurder.domain.Views;
 import com.example.eurder.domain.itemgroup.ItemGroup;
 import com.example.eurder.domain.user.User;
-import com.fasterxml.jackson.annotation.JsonView;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.util.List;
 
 @Entity
@@ -13,8 +19,8 @@ import java.util.List;
 public class Order {
 
     @Id
-    @SequenceGenerator(name= "ORDER_SEQUENCE", sequenceName = "ORDER_SEQUENCE_ID", allocationSize = 1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="ORDER_SEQUENCE")
+    @SequenceGenerator(name = "ORDER_SEQUENCE", sequenceName = "ORDER_SEQUENCE_ID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "ORDER_SEQUENCE")
     private long id;
 
     @OneToMany

@@ -1,0 +1,54 @@
+@startuml
+skinparam linetype ortho
+
+entity Person {
+    id: Integer [PK]
+    name: String
+}
+
+entity Question {
+    id: Integer [PK]
+    text: String
+    answers: List<Answer>
+}
+
+entity Survey {
+    id: Integer [PK]
+    person: Person
+    scores: List<Score>
+}
+
+entity SurveySubject {
+    id: Integer [PK]
+    name: String
+    sequence: Integer
+    questions: List<Question>
+}
+
+entity Score {
+    id: Integer [PK]
+    value: Integer
+    survey: Survey
+    surveySubject: SurveySubject
+    question: Question
+}
+
+entity Answer {
+    id: Integer [PK]
+    question: Integer [PK/FK]
+    text: String
+    sequence: Integer
+}
+
+
+Survey -> Person
+Survey <--> Score
+
+SurveySubject -> Question
+
+Score -> SurveySubject
+Score -> Question
+
+Question <--> Answer
+
+@enduml
