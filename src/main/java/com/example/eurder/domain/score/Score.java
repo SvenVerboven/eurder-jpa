@@ -1,7 +1,6 @@
 package com.example.eurder.domain.score;
 
 import com.example.eurder.domain.question.Question;
-import com.example.eurder.domain.survey.Survey;
 import com.example.eurder.domain.surveysubject.SurveySubject;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,9 +26,6 @@ public class Score {
     private int id;
     @Column(name = "VALUE")
     private Integer value;
-    @ManyToOne
-    @JoinColumn(name = "SURVEY_ID")
-    private Survey survey;
     @ManyToOne
     @JoinColumn(name = "SURVEY_SUBJECT_ID")
     private SurveySubject surveySubject;

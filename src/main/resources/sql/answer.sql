@@ -1,0 +1,15 @@
+INSERT INTO public.answer (id, sequence, text) VALUES (1, 1, 'te donker');
+INSERT INTO public.answer (id, sequence, text) VALUES (2, 2, 'te licht');
+INSERT INTO public.answer (id, sequence, text) VALUES (3, 3, 'mooi gekleurd');
+INSERT INTO public.answer (id, sequence, text) VALUES (4, 1, 'ruikt naar niets');
+INSERT INTO public.answer (id, sequence, text) VALUES (5, 2, 'ruikt te sterk');
+INSERT INTO public.answer (id, sequence, text) VALUES (6, 3, 'ruikt naar een lekkere steak');
+INSERT INTO public.answer (id, sequence, text) VALUES (7, 1, 'smaakt niet lekker');
+INSERT INTO public.answer (id, sequence, text) VALUES (8, 2, 'smaakt ok');
+INSERT INTO public.answer (id, sequence, text) VALUES (9, 3, 'smaakt super lekker');
+INSERT INTO public.answer (id, sequence, text) VALUES (10, 1, 'te weinig geaderd');
+INSERT INTO public.answer (id, sequence, text) VALUES (11, 2, 'te veel geaderd');
+INSERT INTO public.answer (id, sequence, text) VALUES (12, 3, 'perfect geaderd');
+INSERT INTO public.answer (id, sequence, text) VALUES (13, 1, 'te mals');
+INSERT INTO public.answer (id, sequence, text) VALUES (14, 2, 'te taai');
+INSERT INTO public.answer (id, sequence, text) VALUES (15, 3, 'perfect mals');

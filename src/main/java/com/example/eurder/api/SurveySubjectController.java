@@ -15,7 +15,7 @@ import java.util.Collection;
 
 @CrossOrigin
 @AllArgsConstructor
-@RestController()
+@RestController
 @RequestMapping(path = "/surveysubjects")
 public class SurveySubjectController {
 

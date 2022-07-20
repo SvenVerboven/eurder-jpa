@@ -9,7 +9,7 @@ entity Person {
 entity Question {
     id: Integer [PK]
     text: String
-    answers: List<Answer>
+'    answers: List<Answer>
 }
 
 entity Survey {
@@ -28,17 +28,17 @@ entity SurveySubject {
 entity Score {
     id: Integer [PK]
     value: Integer
-    survey: Survey
+'    survey: Survey
     surveySubject: SurveySubject
     question: Question
 }
 
-entity Answer {
-    id: Integer [PK]
-    question: Integer [PK/FK]
-    text: String
-    sequence: Integer
-}
+'entity Answer {
+'    id: Integer [PK]
+'    question: Integer [PK/FK]
+'    text: String
+'    sequence: Integer
+'}
 
 
 Survey -> Person
@@ -49,6 +49,6 @@ SurveySubject -> Question
 Score -> SurveySubject
 Score -> Question
 
-Question <--> Answer
+'Question <--> Answer
 
 @enduml

@@ -26,9 +26,10 @@ public class Survey {
     @SequenceGenerator(name = "SURVEY_SEQUENCE", sequenceName = "SURVEY_SEQUENCE_ID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SURVEY_SEQUENCE")
     private int id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "FK_PERSON_ID")
     private Person person;
-    @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "PERSON_ID")
     private Collection<Score> scores;
 }
