@@ -17,7 +17,7 @@ import java.util.Collection;
 
 @CrossOrigin
 @AllArgsConstructor
-@RestController()
+@RestController
 @RequestMapping(path = "/persons")
 public class PersonController {
 
