@@ -23,4 +23,12 @@ public class PersonService {
     public Collection<Person> findAll() {
         return Lists.newArrayList(personRepository.findAll());
     }
+
+    public void deleteAll() {
+        personRepository.deleteAll();
+    }
+
+    public void deleteById(int id) {
+        this.personRepository.deleteById(id);
+    }
 }

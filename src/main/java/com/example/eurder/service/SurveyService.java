@@ -28,4 +28,12 @@ public class SurveyService {
     public Collection<Survey> findAll() {
         return Lists.newArrayList(surveyRepository.findAll());
     }
+
+    public void deleteAll() {
+        surveyRepository.deleteAll();
+    }
+
+    public void deleteById(int id) {
+        surveyRepository.deleteById(id);
+    }
 }
